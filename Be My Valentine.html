@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #ff758c, #ff7eb3);
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            position: relative;
+        }
+        .hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .heart {
+            position: absolute;
+            font-size: 24px;
+            animation: float 4s linear infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh); }
+            100% { transform: translateY(-10vh); }
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+.container2 {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-container {
+            margin-top: 10px;
+            position: relative;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        .yes {
+            background: #ff4d4d;
+            color: white;
+        }
+        .no {
+            background: #ff4d4d;
+            color: white;
+            position: absolute;
+        }
+    </style>
+    <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+</head>
+<body>
+    <div class="hearts"></div>
+    <div class="container" id="main-container">
+        <h2>Neel Patel <br/>Will you be my Valentine?🌹</h2>
+        <div class="tenor-gif-embed" data-postid="10681069" data-share-method="host" data-aspect-ratio="1.21429" data-width="100%"></div>
+        <div class="btn-container">
+            <button class="yes" onclick="showGif()">Yes</button>
+            <button class="no" onclick="moveNoButton()">No</button>
+        </div>
+    </div>
+    
+    <script>
+        function createHearts() {
+            const heartContainer = document.querySelector('.hearts');
+            const emojis = ['❤️', '💖', '💘', '💝', '💕', '😍', '🥰'];
+            for (let i = 0; i < 20; i++) {
+                let heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                heartContainer.appendChild(heart);
+                setTimeout(() => heart.remove(), 4000);
+            }
+            setTimeout(createHearts, 1000);
+        }
+        createHearts();
+        
+        let noButton = document.querySelector('.no');
+        let size = 16;
+        function moveNoButton() {
+            let maxX = 200;
+            let maxY = 50;
+            
+            let x = Math.random() * maxX;
+            let y = Math.random() * maxY;
+            
+            noButton.style.transform = `translate(${x}px, ${y}px)`;
+            size = Math.max(10, size - 2);
+            noButton.style.fontSize = size + 'px';
+        }
+
+        function showGif() {
+            let container = document.getElementById('main-container');
+            container.innerHTML = `
+   <div class="container" style="width: 350px; max-width: 90%;">
+                    <h2 style="color: #ff4d4d;">Yay! ❤️</h2>
+                    <div class="tenor-gif-embed" data-postid="14813651" data-share-method="host" data-aspect-ratio="1.10727" data-width="100%"></div>
+                </div>            
+            `;
+            window.setTimeout(() => {
+                let script = document.createElement('script');
+                script.src = "https://tenor.com/embed.js";
+                script.async = true;
+                document.body.appendChild(script);
+            }, 100);
+        }
+    </script>
+</body>
+</html>
